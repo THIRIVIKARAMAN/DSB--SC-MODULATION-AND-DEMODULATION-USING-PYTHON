@@ -88,3 +88,4 @@ __Output__:
 
 
 __Result__:
+Thus the Double Sideband Suppressed Carrier (DSB-SC) signal in Python (Google Colab), transmit it (optionally add noise), and recover the message using coherent (synchronous) demodulation with a low-pass filter. time and frequency domain waveforms and measured demodulation performance was succesfully executed
