@@ -27,9 +27,64 @@ __Procedure__:
 5) (Optional) Add noise
 6) Coherent demodulation (multiply by synchronized carrier)
 7) Low-pass filter to recover message
+__Program__:
+~~~
+import numpy as np
+import matplotlib.pyplot as plt
 
-   __Tabulation__:
+Ac = 37.2
+fc = 8000
 
-   __Output__:
+Am = 18.6
+fm = 800
 
-   __Result__:
+fs = 80000
+
+# Time vector
+t = np.arange(0, 2/fm, 1/fs)
+
+# Angular frequencies
+Wm = 2 * np.pi * fm
+Wc = 2 * np.pi * fc
+
+# Message signal (sine)
+Em = Am * np.sin(Wm * t)
+
+# Carrier signal (sine)
+Ec = Ac * np.sin(Wc * t)
+
+# DSB-SC using trigonometric identity
+Edsbsc = ((Am / 2) * np.cos((Wc - Wm) * t)) - ((Am / 2) * np.cos((Wc + Wm) * t))
+
+# Plotting
+plt.figure(figsize=(10, 6))
+
+plt.subplot(3, 1, 1)
+plt.plot(t, Em)
+plt.title("Message Signal (Em)")
+plt.grid()
+
+plt.subplot(3, 1, 2)
+plt.plot(t, Ec)
+plt.title("Carrier Signal (Ec)")
+plt.grid()
+
+plt.subplot(3, 1, 3)
+plt.plot(t, Edsbsc)
+plt.title("DSB-SC Signal (Edsbsc)")
+plt.grid()
+
+plt.tight_layout()
+plt.show()
+~~~
+ __Tabulation__:
+![WhatsApp Image 2025-11-22 at 08 35 46_220cf006](https://github.com/user-attachments/assets/f110fa8d-00da-4f7b-898b-b31975413d0f)
+
+ __Calculation__:
+![WhatsApp Image 2025-11-22 at 08 35 46_d58c0785](https://github.com/user-attachments/assets/f7866ff5-a6fe-4119-9101-1f9acb20b60a)
+
+__Output__:
+<img width="989" height="590" alt="image" src="https://github.com/user-attachments/assets/6b5dd575-eeba-4601-8998-ab830f40325f" />
+
+
+__Result__:
